@@ -1,11 +1,10 @@
 using SOLIDExamples.Services;
+using SOLIDExamples.Services.Payment;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -16,6 +15,18 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ILoggerService, LoggerService>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+// Register payment strategies
+builder.Services.AddTransient<CreditCardPaymentStrategy>();
+builder.Services.AddTransient<PayPalPaymentStrategy>();
+builder.Services.AddTransient<StripePaymentStrategy>();
+builder.Services.AddTransient<BankTransferPaymentStrategy>();
+builder.Services.AddTransient<CryptocurrencyPaymentStrategy>();
+builder.Services.AddTransient<ApplePayPaymentStrategy>();
+
+// Register factory and processor
+builder.Services.AddScoped<IPaymentStrategyFactory, PaymentStrategyFactory>();
+builder.Services.AddScoped<IPaymentProcessor, PaymentProcessor>();
 
 var app = builder.Build();
 

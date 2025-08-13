@@ -59,3 +59,53 @@ SOLIDExamples/
 
 **Feel free to explore and modify the code to see the impact of following or violating SRP!**
 ![Description](assets/srp_diagram_svg.svg)
+
+
+## Open/Closed Principle (OCP) in ASP.NET Core API
+
+### What is Open/Closed Principle?
+The Open/Closed Principle states that **software entities (classes, modules, functions) should be open for extension but closed for modification**. You should be able to extend a class's behavior without modifying its existing code.
+
+### Real-Time Example: Payment Processing API
+This project demonstrates OCP with a Payment Processing API supporting multiple payment methods (Credit Card, PayPal, Stripe, Bank Transfer, Cryptocurrency, Apple Pay, etc.).
+
+#### ❌ BAD Example - Violating OCP
+A single class with a switch statement for each payment method. Adding new methods requires modifying the class, risking bugs and violating OCP.
+
+#### ✅ GOOD Example - Following OCP
+- **Strategy Pattern**: Each payment method is implemented as a separate strategy class.
+- **Factory Pattern**: A factory resolves the correct strategy based on the payment method.
+- **Dependency Injection**: New payment methods are registered in DI without modifying existing code.
+- **Controller**: The API controller uses abstractions and is closed for modification.
+
+#### Benefits
+- **Easy Extension**: Add new payment methods by creating new strategy classes.
+- **Reduced Risk**: Existing code remains untouched when adding features.
+- **Better Testing**: Each payment strategy can be tested independently.
+- **Improved Maintainability**: Changes are isolated to specific strategies.
+- **Scalable Architecture**: System can grow without breaking existing features.
+
+#### Key Takeaways
+- **Open for Extension**: New functionality via new classes.
+- **Closed for Modification**: No changes to existing code for new features.
+- **Polymorphism & DI**: Use interfaces and DI for extensibility.
+
+---
+
+### Project Structure
+- `Models/Models.cs`: Payment models, enums, and DTOs.
+- `Services/Payment/`: Payment strategies, factory, and processor.
+- `Controllers/PaymentsController.cs`: API endpoints for payment processing.
+- `Program.cs`: DI setup for payment strategies and services.
+
+---
+
+### How to Add a New Payment Method
+1. Create a new class implementing `IPaymentStrategy`.
+2. Register the new strategy in `Program.cs` and the factory.
+3. No changes required to controller or processor.
+
+---
+
+This approach makes the ASP.NET Core API extensible, maintainable, and SOLID-compliant.
+![Description](assets/ocp_diagram_svg.svg)
