@@ -1,0 +1,209 @@
+<svg viewBox="0 0 1200 1400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="badGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b6b"/>
+      <stop offset="100%" style="stop-color:#ffa500"/>
+    </linearGradient>
+    
+    <linearGradient id="goodGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ecdc4"/>
+      <stop offset="100%" style="stop-color:#44a08d"/>
+    </linearGradient>
+    
+    <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+    
+    <linearGradient id="benefitsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+    
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="1400" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="600" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="300" fill="#2c3e50">
+    Single Responsibility Principle
+  </text>
+  <text x="600" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="300" fill="#2c3e50">
+    ASP.NET Core API Architecture
+  </text>
+  
+  <!-- Bad Example Section -->
+  <rect x="50" y="120" width="520" height="400" rx="15" fill="url(#badGradient)" filter="url(#shadow)"/>
+  
+  <!-- Bad Example Title -->
+  <text x="310" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white">
+    ❌ Violating SRP
+  </text>
+  
+  <!-- Monolithic UserService -->
+  <rect x="80" y="180" width="460" height="300" rx="10" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  
+  <text x="310" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white">
+    🏗️ UserService (Monolithic)
+  </text>
+  
+  <!-- Responsibilities -->
+  <rect x="100" y="230" width="420" height="30" rx="5" fill="rgba(255,255,255,0.15)"/>
+  <rect x="97" y="230" width="3" height="30" fill="rgba(255,255,255,0.5)"/>
+  <text x="110" y="250" font-family="Arial, sans-serif" font-size="14" fill="white">🔍 Input Validation</text>
+  
+  <rect x="100" y="270" width="420" height="30" rx="5" fill="rgba(255,255,255,0.15)"/>
+  <rect x="97" y="270" width="3" height="30" fill="rgba(255,255,255,0.5)"/>
+  <text x="110" y="290" font-family="Arial, sans-serif" font-size="14" fill="white">💼 Business Logic</text>
+  
+  <rect x="100" y="310" width="420" height="30" rx="5" fill="rgba(255,255,255,0.15)"/>
+  <rect x="97" y="310" width="3" height="30" fill="rgba(255,255,255,0.5)"/>
+  <text x="110" y="330" font-family="Arial, sans-serif" font-size="14" fill="white">🗄️ Data Access</text>
+  
+  <rect x="100" y="350" width="420" height="30" rx="5" fill="rgba(255,255,255,0.15)"/>
+  <rect x="97" y="350" width="3" height="30" fill="rgba(255,255,255,0.5)"/>
+  <text x="110" y="370" font-family="Arial, sans-serif" font-size="14" fill="white">📧 Email Sending</text>
+  
+  <rect x="100" y="390" width="420" height="30" rx="5" fill="rgba(255,255,255,0.15)"/>
+  <rect x="97" y="390" width="3" height="30" fill="rgba(255,255,255,0.5)"/>
+  <text x="110" y="410" font-family="Arial, sans-serif" font-size="14" fill="white">📝 Logging</text>
+  
+  <rect x="100" y="430" width="420" height="30" rx="5" fill="rgba(255,255,255,0.15)"/>
+  <rect x="97" y="430" width="3" height="30" fill="rgba(255,255,255,0.5)"/>
+  <text x="110" y="450" font-family="Arial, sans-serif" font-size="14" fill="white">⚠️ Error Handling</text>
+  
+  <text x="310" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-style="italic" fill="white">
+    One class, many responsibilities = Hard to maintain!
+  </text>
+  
+  <!-- Good Example Section -->
+  <rect x="630" y="120" width="520" height="400" rx="15" fill="url(#goodGradient)" filter="url(#shadow)"/>
+  
+  <!-- Good Example Title -->
+  <text x="890" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white">
+    ✅ Following SRP
+  </text>
+  
+  <!-- Individual Components -->
+  <rect x="660" y="180" width="460" height="45" rx="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <text x="890" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">🔍 UserValidator</text>
+  <text x="890" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Only validates input</text>
+  
+  <rect x="660" y="235" width="460" height="45" rx="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <text x="890" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">🔐 PasswordService</text>
+  <text x="890" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Only handles passwords</text>
+  
+  <rect x="660" y="290" width="460" height="45" rx="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <text x="890" y="310" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">🗄️ UserRepository</text>
+  <text x="890" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Only manages data</text>
+  
+  <rect x="660" y="345" width="460" height="45" rx="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <text x="890" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">📧 EmailService</text>
+  <text x="890" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Only sends emails</text>
+  
+  <rect x="660" y="400" width="460" height="45" rx="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <text x="890" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">📝 LoggerService</text>
+  <text x="890" y="440" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Only handles logging</text>
+  
+  <text x="890" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-style="italic" fill="white">
+    Each class has one clear responsibility!
+  </text>
+  
+  <!-- Request Flow Section -->
+  <text x="600" y="580" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="300" fill="#2c3e50">
+    Request Flow in SRP Architecture
+  </text>
+  
+  <!-- Flow Background -->
+  <rect x="50" y="610" width="1100" height="120" rx="15" fill="#e9ecef" filter="url(#shadow)"/>
+  
+  <!-- Flow Steps -->
+  <rect x="80" y="640" width="140" height="60" rx="10" fill="url(#flowGradient)" filter="url(#shadow)"/>
+  <text x="150" y="665" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">🌐 Controller</text>
+  <text x="150" y="685" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Handle HTTP</text>
+  
+  <!-- Arrow 1 -->
+  <text x="240" y="675" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#667eea">→</text>
+  
+  <rect x="270" y="640" width="140" height="60" rx="10" fill="url(#flowGradient)" filter="url(#shadow)"/>
+  <text x="340" y="665" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">💼 UserService</text>
+  <text x="340" y="685" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Business Logic</text>
+  
+  <!-- Arrow 2 -->
+  <text x="430" y="675" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#667eea">→</text>
+  
+  <rect x="460" y="640" width="140" height="60" rx="10" fill="url(#flowGradient)" filter="url(#shadow)"/>
+  <text x="530" y="665" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">🔍 Validator</text>
+  <text x="530" y="685" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Validate Input</text>
+  
+  <!-- Arrow 3 -->
+  <text x="620" y="675" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#667eea">→</text>
+  
+  <rect x="650" y="640" width="140" height="60" rx="10" fill="url(#flowGradient)" filter="url(#shadow)"/>
+  <text x="720" y="665" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">🗄️ Repository</text>
+  <text x="720" y="685" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Persist Data</text>
+  
+  <!-- Arrow 4 -->
+  <text x="810" y="675" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#667eea">→</text>
+  
+  <rect x="840" y="640" width="140" height="60" rx="10" fill="url(#flowGradient)" filter="url(#shadow)"/>
+  <text x="910" y="665" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">📧 Email Service</text>
+  <text x="910" y="685" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Send Notifications</text>
+  
+  <text x="600" y="760" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-style="italic" fill="#6c757d">
+    Each component has a single, well-defined responsibility
+  </text>
+  
+  <!-- Benefits Section -->
+  <rect x="50" y="790" width="1100" height="250" rx="15" fill="url(#benefitsGradient)" filter="url(#shadow)"/>
+  
+  <text x="600" y="825" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white">
+    🎯 Benefits of Following SRP
+  </text>
+  
+  <!-- Benefits Grid -->
+  <rect x="80" y="850" width="320" height="80" rx="8" fill="rgba(255,255,255,0.1)"/>
+  <rect x="76" y="850" width="4" height="80" fill="#4ecdc4"/>
+  <text x="90" y="875" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4ecdc4">🧪 Better Testability</text>
+  <text x="90" y="895" font-family="Arial, sans-serif" font-size="12" fill="white">Each component can be unit tested</text>
+  <text x="90" y="910" font-family="Arial, sans-serif" font-size="12" fill="white">independently with mocked dependencies</text>
+  
+  <rect x="420" y="850" width="320" height="80" rx="8" fill="rgba(255,255,255,0.1)"/>
+  <rect x="416" y="850" width="4" height="80" fill="#4ecdc4"/>
+  <text x="430" y="875" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4ecdc4">🔧 Easier Maintenance</text>
+  <text x="430" y="895" font-family="Arial, sans-serif" font-size="12" fill="white">Changes to email logic don't affect</text>
+  <text x="430" y="910" font-family="Arial, sans-serif" font-size="12" fill="white">validation or data access</text>
+  
+  <rect x="760" y="850" width="320" height="80" rx="8" fill="rgba(255,255,255,0.1)"/>
+  <rect x="756" y="850" width="4" height="80" fill="#4ecdc4"/>
+  <text x="770" y="875" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4ecdc4">♻️ Higher Reusability</text>
+  <text x="770" y="895" font-family="Arial, sans-serif" font-size="12" fill="white">Password service can be reused</text>
+  <text x="770" y="910" font-family="Arial, sans-serif" font-size="12" fill="white">across different features</text>
+  
+  <rect x="80" y="940" width="320" height="80" rx="8" fill="rgba(255,255,255,0.1)"/>
+  <rect x="76" y="940" width="4" height="80" fill="#4ecdc4"/>
+  <text x="90" y="965" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4ecdc4">🎯 Clear Separation</text>
+  <text x="90" y="985" font-family="Arial, sans-serif" font-size="12" fill="white">Each class has a clear, single</text>
+  <text x="90" y="1000" font-family="Arial, sans-serif" font-size="12" fill="white">purpose and reason to change</text>
+  
+  <rect x="420" y="940" width="320" height="80" rx="8" fill="rgba(255,255,255,0.1)"/>
+  <rect x="416" y="940" width="4" height="80" fill="#4ecdc4"/>
+  <text x="430" y="965" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4ecdc4">📈 Better Scalability</text>
+  <text x="430" y="985" font-family="Arial, sans-serif" font-size="12" fill="white">Easy to add new features without</text>
+  <text x="430" y="1000" font-family="Arial, sans-serif" font-size="12" fill="white">affecting existing code</text>
+  
+  <rect x="760" y="940" width="320" height="80" rx="8" fill="rgba(255,255,255,0.1)"/>
+  <rect x="756" y="940" width="4" height="80" fill="#4ecdc4"/>
+  <text x="770" y="965" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4ecdc4">🐛 Easier Debugging</text>
+  <text x="770" y="985" font-family="Arial, sans-serif" font-size="12" fill="white">Issues are isolated to specific</text>
+  <text x="770" y="1000" font-family="Arial, sans-serif" font-size="12" fill="white">areas of functionality</text>
+  
+  <!-- Footer -->
+  <text x="600" y="1350" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-style="italic" fill="#6c757d">
+    Single Responsibility Principle - ASP.NET Core API Architecture
+  </text>
+</svg>

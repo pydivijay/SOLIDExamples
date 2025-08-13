@@ -1,0 +1,6 @@
+@SOLIDExamples_HostAddress = http://localhost:5027
+
+GET {{SOLIDExamples_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
