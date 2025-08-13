@@ -107,5 +107,5 @@ A single class with a switch statement for each payment method. Adding new metho
 
 ---
 
-This approach makes the ASP.NET Core API extensible, maintainable, and SOLID-compliant.
+#### This approach makes the ASP.NET Core API extensible, maintainable, and SOLID-compliant.
 ![Description](assets/ocp_diagram_svg.svg)
