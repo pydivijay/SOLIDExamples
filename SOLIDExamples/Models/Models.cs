@@ -138,4 +138,29 @@ namespace SOLIDExamples.Models
         AwsS3,
         GoogleCloudStorage
     }
+
+    // ISP Notification Models
+    public class NotificationRequest
+    {
+        public string To { get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
+    }
+
+    public class NotificationResult
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; }
+    }
+
+    // DIP Logger Models
+    public class LogRequest
+    {
+        public string Message { get; set; }
+    }
+    public class LogResult
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; }
+    }
 }
