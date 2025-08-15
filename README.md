@@ -190,6 +190,9 @@ This project demonstrates ISP with notification services (Email, SMS, Push, etc.
 5. Register both in DI for comparison.
 
 ---
+![Description](assets/ISP_Violation.svg)
+![Description](assets/ISP_Compliant.svg)
+
 
 ## Dependency Inversion Principle (DIP) in ASP.NET Core API
 
@@ -227,3 +230,5 @@ This project demonstrates DIP with logger services (ConsoleLogger, FileLogger, e
 ### Conclusion
 - **DIP-compliant code** makes your system flexible, testable, and easy to maintain.
 - **DIP-violating code** leads to rigid, hard-to-test, and hard-to-extend systems.
+![Description](assets/DIP_Violation.svg)
+![Description](assets/DIP_Compliant.svg)

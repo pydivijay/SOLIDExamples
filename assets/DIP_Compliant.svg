@@ -1,0 +1,69 @@
+<svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgDipOk" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ecfeff"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+    <linearGradient id="abstr" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ddd6fe"/>
+      <stop offset="100%" stop-color="#c4b5fd"/>
+    </linearGradient>
+    <linearGradient id="impl" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="hlm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="100%" stop-color="#fcd34d"/>
+    </linearGradient>
+    <marker id="arrow3" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#0f172a"/>
+    </marker>
+    <style>
+      .card{rx:16; ry:16; stroke:#0f172a; stroke-width:2; fill:white;}
+      .title{font: 700 22px ui-sans-serif,system-ui,Segoe UI,Roboto; fill:#0f172a;}
+      .label{font: 600 16px ui-sans-serif,system-ui,Segoe UI,Roboto; fill:#0f172a;}
+      .sub{font: 13px ui-sans-serif,system-ui,Segoe UI,Roboto; fill:#334155;}
+      .caption{font: 12px ui-sans-serif,system-ui,Segoe UI,Roboto; fill:#475569;}
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="720" fill="url(#bgDipOk)"/>
+  <text x="32" y="44" class="title">Dependency Inversion Principle — Compliant</text>
+  <text x="32" y="68" class="sub">High-level modules depend on abstractions; low-level modules implement them.</text>
+
+  <!-- High-level -->
+  <rect x="60" y="110" width="340" height="180" class="card" fill="url(#hlm)"/>
+  <text x="80" y="140" class="label">High-Level Module</text>
+  <text x="80" y="168" class="sub">LogsController</text>
+  <text x="80" y="192" class="sub">→ depends on ILoggerService</text>
+
+  <!-- Abstraction -->
+  <rect x="440" y="110" width="320" height="180" class="card" fill="url(#abstr)"/>
+  <text x="460" y="140" class="label">Abstraction</text>
+  <text x="460" y="168" class="sub">ILoggerService</text>
+  <text x="460" y="192" class="sub">LogInfo(), LogWarning(), LogError()</text>
+
+  <!-- Low-level -->
+  <rect x="820" y="90" width="320" height="220" class="card" fill="url(#impl)"/>
+  <text x="840" y="120" class="label">Low-Level Implementations</text>
+  <text x="840" y="148" class="sub">ConsoleLoggerService : ILoggerService</text>
+  <text x="840" y="172" class="sub">FileLoggerService : ILoggerService</text>
+  <text x="840" y="196" class="sub">DbLoggerService : ILoggerService</text>
+
+  <!-- Arrows -->
+  <line x1="400" y1="190" x2="440" y2="190" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arrow3)"/>
+  <text x="320" y="178" class="caption">depends on</text>
+  <line x1="760" y1="170" x2="820" y2="170" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arrow3)"/>
+  <text x="680" y="158" class="caption">implemented by</text>
+
+  <!-- Steps -->
+  <rect x="60" y="340" width="1080" height="320" class="card"/>
+  <text x="80" y="370" class="label">Integration Steps (DIP)</text>
+  <text x="80" y="398" class="sub">1. Define ILoggerService abstraction with required logging operations</text>
+  <text x="80" y="422" class="sub">2. Implement ConsoleLoggerService / FileLoggerService / DbLoggerService</text>
+  <text x="80" y="446" class="sub">3. Inject ILoggerService into LogsController (constructor injection)</text>
+  <text x="80" y="470" class="sub">4. Register DI mapping (e.g., services.AddSingleton&lt;ILoggerService, FileLoggerService&gt;())</text>
+  <text x="80" y="494" class="sub">5. Swap implementations by changing DI only — no controller changes</text>
+  <text x="80" y="532" class="caption">Outcome: Highly swappable, testable, and maintainable logging.</text>
+</svg>

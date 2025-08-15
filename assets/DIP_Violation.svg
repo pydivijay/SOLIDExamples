@@ -1,0 +1,45 @@
+<svg viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgDipBad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#fee2e2"/>
+    </linearGradient>
+    <marker id="arrow4" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#7f1d1d"/>
+    </marker>
+    <style>
+      .card{rx:16; ry:16; stroke:#7f1d1d; stroke-width:2; fill:white;}
+      .title{font: 700 22px ui-sans-serif,system-ui,Segoe UI,Roboto; fill:#7f1d1d;}
+      .label{font: 600 16px ui-sans-serif,system-ui,Segoe UI,Roboto; fill:#7f1d1d;}
+      .sub{font: 13px ui-sans-serif,system-ui,Segoe UI,Roboto; fill:#7f1d1d;}
+      .warn{font: 12px ui-sans-serif,system-ui,Segoe UI,Roboto; fill:#b91c1c;}
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="560" fill="url(#bgDipBad)"/>
+  <text x="32" y="44" class="title">Dependency Inversion Principle — Violation</text>
+
+  <rect x="60" y="100" width="360" height="180" class="card"/>
+  <text x="80" y="128" class="label">High-Level Module</text>
+  <text x="80" y="156" class="sub">LogsController</text>
+  <text x="80" y="180" class="sub">→ directly new ConsoleLogger()</text>
+
+  <rect x="520" y="100" width="300" height="180" class="card"/>
+  <text x="540" y="128" class="label">Concrete Logger</text>
+  <text x="540" y="156" class="sub">ConsoleLogger</text>
+  <text x="540" y="186" class="warn">Tight coupling: swapping requires code change</text>
+
+  <line x1="420" y1="180" x2="520" y2="180" stroke="#7f1d1d" stroke-width="2.5" marker-end="url(#arrow4)"/>
+
+  <rect x="860" y="90" width="280" height="200" class="card"/>
+  <text x="880" y="118" class="label">Controller (Bad)</text>
+  <text x="880" y="146" class="sub">public LogsController() {</text>
+  <text x="900" y="168" class="sub">_logger = new ConsoleLogger();</text>
+  <text x="880" y="190" class="sub">}</text>
+
+  <rect x="60" y="320" width="1080" height="180" class="card"/>
+  <text x="80" y="348" class="label">Symptoms of Violation</text>
+  <text x="80" y="376" class="sub">• High-level depends on low-level details</text>
+  <text x="80" y="400" class="sub">• Swapping logger requires recompilation &amp; code edits</text>
+  <text x="80" y="424" class="sub">• Hard to mock in tests; brittle design</text>
+</svg>
