@@ -96,4 +96,46 @@ namespace SOLIDExamples.Models
         public string WalletAddress { get; set; }
         public Dictionary<string, object> Metadata { get; set; }
     }
+
+    // LSP Document Storage Models
+    public class DocumentInfo
+    {
+        public string DocumentId { get; set; }
+        public string FileName { get; set; }
+        public long Size { get; set; }
+        public string ContentType { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? ModifiedAt { get; set; }
+        public string StorageProvider { get; set; }
+        public Dictionary<string, string> Metadata { get; set; } = new();
+    }
+
+    public class UploadResult
+    {
+        public bool Success { get; set; }
+        public string DocumentId { get; set; }
+        public string Message { get; set; }
+        public long Size { get; set; }
+    }
+
+    public class DocumentStorageException : Exception
+    {
+        public string DocumentId { get; }
+        public DocumentStorageException(string message) : base(message) { }
+        public DocumentStorageException(string message, string documentId) : base(message) { DocumentId = documentId; }
+        public DocumentStorageException(string message, Exception innerException) : base(message, innerException) { }
+    }
+
+    public class DocumentNotFoundException : DocumentStorageException
+    {
+        public DocumentNotFoundException(string documentId) : base($"Document not found: {documentId}", documentId) { }
+    }
+
+    public enum StorageProvider
+    {
+        LocalFileSystem,
+        AzureBlob,
+        AwsS3,
+        GoogleCloudStorage
+    }
 }

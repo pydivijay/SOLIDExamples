@@ -109,3 +109,58 @@ A single class with a switch statement for each payment method. Adding new metho
 
 #### This approach makes the ASP.NET Core API extensible, maintainable, and SOLID-compliant.
 ![Description](assets/ocp_diagram_svg.svg)
+
+
+## Liskov Substitution Principle (LSP) in ASP.NET Core API
+
+### What is Liskov Substitution Principle?
+The Liskov Substitution Principle (LSP) states that **objects of a superclass should be replaceable with objects of its subclasses without breaking the application**. Derived classes must be substitutable for their base classes without altering the correctness of the program.
+
+### Real-Time Example: Document Storage API
+This project demonstrates LSP with a Document Storage API supporting multiple storage providers (Local File System, Azure Blob Storage, AWS S3, etc.).
+
+### LSP-Compliant Example
+- All storage providers inherit from `DocumentStorageBase` and implement the same contract.
+- Methods return the expected types and throw the expected exceptions.
+- Client code can use any storage provider interchangeably.
+
+### LSP Violation Example
+- A `BadDocumentStorage` class is provided that returns null, throws generic exceptions, or returns incorrect values, violating the contract.
+- A `BadDocumentStorageController` demonstrates the issues that arise from LSP violations.
+
+### Steps to Integrate LSP Principle
+
+1. **Models and Exception Types**
+   - Add `DocumentInfo`, `UploadResult`, `DocumentStorageException`, `DocumentNotFoundException`, and `StorageProvider` to your models.
+
+2. **Abstract Base Class**
+   - Create `DocumentStorageBase` with abstract methods for upload, download, delete, info, existence, and listing.
+
+3. **LSP-Compliant Implementation**
+   - Implement `LocalFileSystemStorage` inheriting from `DocumentStorageBase`.
+   - Ensure all methods return the correct types and throw the correct exceptions.
+
+4. **LSP-Violating Implementation**
+   - Implement `BadDocumentStorage` that returns null, throws generic exceptions, or returns incorrect values.
+
+5. **Controllers**
+   - Add `DocumentStorageController` for the LSP-compliant implementation.
+   - Add `BadDocumentStorageController` for the violation example.
+
+6. **Dependency Injection**
+   - Register `LocalFileSystemStorage` as `DocumentStorageBase` in `Program.cs`.
+   - Optionally register `BadDocumentStorage` for demonstration.
+
+### LSP Principle vs Violation
+
+| Aspect                | LSP-Compliant (`LocalFileSystemStorage`) | LSP-Violating (`BadDocumentStorage`)      |
+|-----------------------|------------------------------------------|-------------------------------------------|
+| Return Types          | Always as specified                      | Sometimes null or wrong type              |
+| Exception Handling    | Throws expected custom exceptions        | Throws generic or unexpected exceptions   |
+| Method Semantics      | Consistent with base class               | Inconsistent, breaks client expectations  |
+| Substitutability      | Safe                                     | Unsafe, can break client code             |
+
+### Conclusion
+- **LSP-compliant code** ensures all subclasses can be used interchangeably, making your system robust and extensible.
+- **LSP-violating code** leads to bugs, runtime errors, and fragile code that is hard to maintain or extend.
+![Description](assets/lsp_diagram_svg.svg)

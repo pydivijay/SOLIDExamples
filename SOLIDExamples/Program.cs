@@ -1,5 +1,6 @@
 using SOLIDExamples.Services;
 using SOLIDExamples.Services.Payment;
+using SOLIDExamples.Services.DocumentStorage;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,11 @@ builder.Services.AddTransient<ApplePayPaymentStrategy>();
 // Register factory and processor
 builder.Services.AddScoped<IPaymentStrategyFactory, PaymentStrategyFactory>();
 builder.Services.AddScoped<IPaymentProcessor, PaymentProcessor>();
+
+// Register LSP Document Storage (example: LocalFileSystemStorage)
+// You can change the base path as needed, or use configuration
+builder.Services.AddSingleton<DocumentStorageBase>(provider =>
+    new LocalFileSystemStorage("./App_Data/Documents"));
 
 var app = builder.Build();
 
