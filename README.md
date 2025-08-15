@@ -164,3 +164,66 @@ This project demonstrates LSP with a Document Storage API supporting multiple st
 - **LSP-compliant code** ensures all subclasses can be used interchangeably, making your system robust and extensible.
 - **LSP-violating code** leads to bugs, runtime errors, and fragile code that is hard to maintain or extend.
 ![Description](assets/lsp_diagram_svg.svg)
+
+## Interface Segregation Principle (ISP) in ASP.NET Core API
+
+### What is Interface Segregation Principle?
+The Interface Segregation Principle (ISP) states that **clients should not be forced to depend on interfaces they do not use**. Instead of one fat interface, use several small, specific interfaces.
+
+### Real-Time Example: Notification Service API
+This project demonstrates ISP with notification services (Email, SMS, Push, etc.).
+
+### ISP-Compliant Example
+- Each notification type (Email, SMS, Push) has its own interface.
+- Services implement only the interfaces they need.
+- Controllers depend only on the required abstractions.
+
+### ISP Violation Example
+- A fat interface (`INotificationServiceBad`) forces all implementations to provide all methods, even if not supported.
+- `SmsNotificationServiceBad` throws `NotImplementedException` for unsupported methods.
+
+### Steps to Integrate ISP Principle
+1. Add models for notification requests/results.
+2. Create a fat interface and a violating implementation.
+3. Create segregated interfaces and ISP-compliant implementations.
+4. Add controllers for both approaches.
+5. Register both in DI for comparison.
+
+---
+
+## Dependency Inversion Principle (DIP) in ASP.NET Core API
+
+### What is Dependency Inversion Principle?
+The Dependency Inversion Principle (DIP) states that **high-level modules should not depend on low-level modules, but both should depend on abstractions**. Abstractions should not depend on details; details should depend on abstractions.
+
+### Real-Time Example: Logger Service API
+This project demonstrates DIP with logger services (ConsoleLogger, FileLogger, etc.).
+
+### DIP-Compliant Example
+- High-level modules (controllers) depend on the `ILoggerService` abstraction.
+- Low-level modules (`ConsoleLoggerService`, `FileLoggerService`) implement the abstraction.
+- Swapping logger implementations requires no change to the controller.
+
+### DIP Violation Example
+- High-level module (`LoggerServiceBad`) depends directly on a concrete logger (`ConsoleLogger`).
+- Controller depends on the concrete class, making it hard to swap implementations.
+
+### Steps to Integrate DIP Principle
+1. Add models for log requests/results.
+2. Create a DIP-violating service and concrete logger.
+3. Create an abstraction and DIP-compliant implementations.
+4. Add controllers for both approaches.
+5. Register both in DI for comparison.
+
+### DIP Principle vs Violation
+
+| Aspect                | DIP-Compliant (`ILoggerService`) | DIP-Violating (`LoggerServiceBad`)      |
+|-----------------------|----------------------------------|-----------------------------------------|
+| Dependency            | On abstraction                   | On concrete class                       |
+| Swappability          | Easy (just change DI)            | Hard (code change required)             |
+| Testability           | High (can mock interface)        | Low (must use real implementation)      |
+| Flexibility           | High                             | Low                                     |
+
+### Conclusion
+- **DIP-compliant code** makes your system flexible, testable, and easy to maintain.
+- **DIP-violating code** leads to rigid, hard-to-test, and hard-to-extend systems.
