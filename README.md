@@ -192,7 +192,7 @@ This project demonstrates ISP with notification services (Email, SMS, Push, etc.
 ---
 ![Description](assets/ISP_Violation.svg)
 ![Description](assets/ISP_Compliant.svg)
-![Description](assets/lsp_diagram_svg.svg)
+![Description](assets/isp_diagram_svg.svg)
 
 
 ## Dependency Inversion Principle (DIP) in ASP.NET Core API
