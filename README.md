@@ -7,27 +7,25 @@ This project demonstrates the Single Responsibility Principle (SRP) in an ASP.NE
 **Single Responsibility Principle** states that a class should have only one reason to change, meaning it should have only one job or responsibility. Following SRP leads to code that is easier to maintain, test, and extend.
 
 ## Project Structure
-```
 SOLIDExamples/
-?
-??? Controllers/
-?   ??? UsersController.cs         # Handles HTTP requests for user registration
-?
-??? Models/
-?   ??? Models.cs                 # Contains User, UserRegistrationDto, ValidationResult, ApiResponse<T>
-?
-??? Services/
-?   ??? UserValidator.cs          # Validates user registration data
-?   ??? PasswordService.cs        # Handles password hashing and verification
-?   ??? UserRepository.cs         # Handles data access for users (SQL Server)
-?   ??? EmailService.cs           # Sends emails (SMTP)
-?   ??? LoggerService.cs          # Logging abstraction
-?   ??? UserService.cs            # Coordinates user registration (SRP-compliant)
-?   ??? UserServiceSRPViolation.cs# Example of a class that violates SRP
-?
-??? Program.cs                    # Configures services and starts the app
-??? ...
-```
+│
+├── Controllers/
+│   └── UsersController.cs         # Handles HTTP requests for user registration
+│
+├── Models/
+│   └── Models.cs                  # Contains User, UserRegistrationDto, ValidationResult, ApiResponse<T>
+│
+├── Services/
+│   ├── UserValidator.cs           # Validates user registration data
+│   ├── PasswordService.cs         # Handles password hashing and verification
+│   ├── UserRepository.cs          # Handles data access for users (SQL Server)
+│   ├── EmailService.cs            # Sends emails (SMTP)
+│   ├── LoggerService.cs           # Logging abstraction
+│   ├── UserService.cs             # Coordinates user registration (SRP-compliant)
+│   └── UserServiceSRPViolation.cs # Example of a class that violates SRP
+│
+├── Program.cs                     # Configures services and starts the app
+└── ...
 
 ## How to Run
 1. Ensure you have .NET 8 SDK installed.
