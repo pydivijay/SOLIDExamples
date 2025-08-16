@@ -192,6 +192,7 @@ This project demonstrates ISP with notification services (Email, SMS, Push, etc.
 ---
 ![Description](assets/ISP_Violation.svg)
 ![Description](assets/ISP_Compliant.svg)
+![Description](assets/lsp_diagram_svg.svg)
 
 
 ## Dependency Inversion Principle (DIP) in ASP.NET Core API
@@ -232,3 +233,4 @@ This project demonstrates DIP with logger services (ConsoleLogger, FileLogger, e
 - **DIP-violating code** leads to rigid, hard-to-test, and hard-to-extend systems.
 ![Description](assets/DIP_Violation.svg)
 ![Description](assets/DIP_Compliant.svg)
+![Description](assets/dip_diagram_svg.svg)

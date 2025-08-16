@@ -1,0 +1,114 @@
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="500" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#333">Dependency Inversion Principle (DIP)</text>
+  
+  <!-- Violation Section -->
+  <text x="250" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#d32f2f">❌ Violation: High-level depends on Low-level</text>
+  
+  <!-- High-level module (bad) -->
+  <rect x="100" y="90" width="200" height="100" fill="#ffebee" stroke="#d32f2f" stroke-width="2" rx="5"/>
+  <text x="200" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold">OrderService</text>
+  <text x="200" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">(High-level module)</text>
+  <line x1="110" y1="140" x2="290" y2="140" stroke="#333" stroke-width="1"/>
+  <text x="110" y="160" font-family="Arial, sans-serif" font-size="12">- MySQLRepository repo</text>
+  <text x="110" y="175" font-family="Arial, sans-serif" font-size="12">+ processOrder()</text>
+  
+  <!-- Low-level module (bad) -->
+  <rect x="100" y="230" width="200" height="80" fill="#ffcdd2" stroke="#d32f2f" stroke-width="1" rx="5"/>
+  <text x="200" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold">MySQLRepository</text>
+  <text x="200" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">(Low-level module)</text>
+  <line x1="110" y1="280" x2="290" y2="280" stroke="#333" stroke-width="1"/>
+  <text x="110" y="295" font-family="Arial, sans-serif" font-size="12">+ save()</text>
+  <text x="110" y="305" font-family="Arial, sans-serif" font-size="12">+ findById()</text>
+  
+  <!-- Dependency arrow (bad) -->
+  <defs>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#d32f2f" />
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#388e3c" />
+    </marker>
+    <marker id="arrowhead-dash" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+    </marker>
+  </defs>
+  <line x1="200" y1="190" x2="200" y2="230" stroke="#d32f2f" stroke-width="3" marker-end="url(#arrowhead-red)"/>
+  <text x="210" y="215" font-family="Arial, sans-serif" font-size="12" fill="#d32f2f">depends on</text>
+  
+  <!-- Problem annotation -->
+  <rect x="50" y="340" width="300" height="60" fill="#ffebee" stroke="#d32f2f" stroke-width="1" rx="5"/>
+  <text x="200" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#d32f2f">Problems:</text>
+  <text x="60" y="380" font-family="Arial, sans-serif" font-size="11" fill="#333">• Hard to switch to PostgreSQL or other databases</text>
+  <text x="60" y="395" font-family="Arial, sans-serif" font-size="11" fill="#333">• Difficult to unit test (tight coupling)</text>
+  
+  <!-- Solution Section -->
+  <text x="750" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#388e3c">✅ Solution: Both depend on Abstraction</text>
+  
+  <!-- High-level module (good) -->
+  <rect x="600" y="90" width="200" height="100" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+  <text x="700" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold">OrderService</text>
+  <text x="700" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">(High-level module)</text>
+  <line x1="610" y1="140" x2="790" y2="140" stroke="#333" stroke-width="1"/>
+  <text x="610" y="160" font-family="Arial, sans-serif" font-size="12">- Repository repo</text>
+  <text x="610" y="175" font-family="Arial, sans-serif" font-size="12">+ processOrder()</text>
+  
+  <!-- Interface/Abstraction -->
+  <rect x="650" y="230" width="150" height="80" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+  <text x="725" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold">«interface»</text>
+  <text x="725" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Repository</text>
+  <text x="725" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">(Abstraction)</text>
+  <line x1="660" y1="290" x2="790" y2="290" stroke="#333" stroke-width="1"/>
+  <text x="660" y="305" font-family="Arial, sans-serif" font-size="12">+ save()</text>
+  
+  <!-- Low-level modules (good) -->
+  <rect x="500" y="350" width="150" height="80" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="5"/>
+  <text x="575" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold">MySQLRepository</text>
+  <text x="575" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="11">(Low-level module)</text>
+  <line x1="510" y1="400" x2="640" y2="400" stroke="#333" stroke-width="1"/>
+  <text x="510" y="415" font-family="Arial, sans-serif" font-size="11">+ save()</text>
+  <text x="510" y="425" font-family="Arial, sans-serif" font-size="11">+ findById()</text>
+  
+  <rect x="700" y="350" width="150" height="80" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="5"/>
+  <text x="775" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold">PostgreSQLRepository</text>
+  <text x="775" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="11">(Low-level module)</text>
+  <line x1="710" y1="400" x2="840" y2="400" stroke="#333" stroke-width="1"/>
+  <text x="710" y="415" font-family="Arial, sans-serif" font-size="11">+ save()</text>
+  <text x="710" y="425" font-family="Arial, sans-serif" font-size="11">+ findById()</text>
+  
+  <!-- Dependency arrows (good) -->
+  <line x1="700" y1="190" x2="725" y2="230" stroke="#388e3c" stroke-width="3" marker-end="url(#arrowhead-green)"/>
+  <text x="730" y="215" font-family="Arial, sans-serif" font-size="12" fill="#388e3c">depends on</text>
+  
+  <line x1="725" y1="310" x2="575" y2="350" stroke="#666" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead-dash)"/>
+  <line x1="725" y1="310" x2="775" y2="350" stroke="#666" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead-dash)"/>
+  <text x="620" y="335" font-family="Arial, sans-serif" font-size="11" fill="#666">implements</text>
+  <text x="780" y="335" font-family="Arial, sans-serif" font-size="11" fill="#666">implements</text>
+  
+  <!-- Dependency injection arrow -->
+  <rect x="870" y="200" width="120" height="60" fill="#fff3e0" stroke="#ff9800" stroke-width="1" rx="5"/>
+  <text x="930" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Dependency</text>
+  <text x="930" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Injection</text>
+  <text x="930" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="10">(IoC Container)</text>
+  <line x1="870" y1="230" x2="800" y2="140" stroke="#ff9800" stroke-width="2" stroke-dasharray="3,3"/>
+  
+  <!-- Benefits -->
+  <rect x="50" y="480" width="900" height="180" fill="#fff3e0" stroke="#ff9800" stroke-width="2" rx="10"/>
+  <text x="500" y="510" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#e65100">DIP Benefits</text>
+  
+  <text x="70" y="540" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Key Principles:</text>
+  <text x="70" y="560" font-family="Arial, sans-serif" font-size="12" fill="#333">• High-level modules should not depend on low-level modules</text>
+  <text x="70" y="575" font-family="Arial, sans-serif" font-size="12" fill="#333">• Both should depend on abstractions (interfaces)</text>
+  <text x="70" y="590" font-family="Arial, sans-serif" font-size="12" fill="#333">• Abstractions should not depend on details</text>
+  <text x="70" y="605" font-family="Arial, sans-serif" font-size="12" fill="#333">• Details should depend on abstractions</text>
+  
+  <text x="520" y="540" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Benefits:</text>
+  <text x="520" y="560" font-family="Arial, sans-serif" font-size="12" fill="#333">• Easy to swap implementations</text>
+  <text x="520" y="575" font-family="Arial, sans-serif" font-size="12" fill="#333">• Highly testable with mock objects</text>
+  <text x="520" y="590" font-family="Arial, sans-serif" font-size="12" fill="#333">• Loose coupling between layers</text>
+  <text x="520" y="605" font-family="Arial, sans-serif" font-size="12" fill="#333">• Follows Open/Closed Principle</text>
+  <text x="520" y="620" font-family="Arial, sans-serif" font-size="12" fill="#333">• Enables dependency injection patterns</text>
+  
+  <text x="70" y="635" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Example:</text>
+  <text x="70" y="650" font-family="Arial, sans-serif" font-size="12" fill="#333">OrderService can work with any database by depending on Repository interface</text>
+</svg>
